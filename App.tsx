@@ -29,6 +29,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+// @ts-ignore
+import RTNCalculator from 'rtn-calculator/js/NativeCalculator.js';
+
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
@@ -84,10 +87,13 @@ const App = () => {
         style={backgroundStyle}>
         <Header />
         <Button
-          title="Objective C to React Native"
-          color="#841584"
-          onPress={onPress}
+          title="Test Turbo Module"
+          onPress={async () => {
+            const value = await RTNCalculator.add(3, 7);
+            console.log(value);
+          }}
         />
+        <Button title="Test NativeModule" color="#841584" onPress={onPress} />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
