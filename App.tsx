@@ -17,6 +17,8 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  NativeModules,
 } from 'react-native';
 
 import {
@@ -64,6 +66,13 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const {CalendarModule} = NativeModules;
+  const onPress = () => {
+    console.log('We will invoke the native module here!');
+    CalendarModule.createCalendarEvent('testName', 'testLocation');
+    CalendarModule.getConstants();
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -74,6 +83,11 @@ const App = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <Button
+          title="Objective C to React Native"
+          color="#841584"
+          onPress={onPress}
+        />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
